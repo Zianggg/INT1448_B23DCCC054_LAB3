@@ -1,0 +1,207 @@
+{
+  "generatedAt": "2026-10-20T03:37:52.171Z",
+  "node": "v22.21.1",
+  "scenario": "TH1 - ngân hàng không kết nối được",
+  "results": [
+    {
+      "mode": "naive",
+      "bankDefault": {
+        "paymentWhileDown": {
+          "statuses": [
+            500,
+            500,
+            500
+          ],
+          "body": {
+            "error": "Payment failed: ECONNREFUSED",
+            "paymentId": "P1",
+            "status": "FAILED",
+            "attempts": 1
+          },
+          "msRuns": [
+            293,
+            23,
+            16
+          ],
+          "msMedian": 23
+        },
+        "feesWhileDown": {
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "msMedian": 7
+        },
+        "feeServiceAlive": true,
+        "paymentAfterBankUp": {
+          "status": 201,
+          "body": {
+            "paymentId": "P4",
+            "reference": "4b1f6434-P4",
+            "studentId": "1",
+            "amount": 100000,
+            "status": "PAID",
+            "chargeId": "CH1",
+            "attempts": 1,
+            "createdAt": "2026-10-20T03:37:27.741Z",
+            "updatedAt": "2026-10-20T03:37:27.800Z",
+            "remainingDebt": 49900000
+          },
+          "ms": 66
+        },
+        "sameFeeProcess": true
+      },
+      "bank4999": {
+        "paymentWhileDown": {
+          "statuses": [
+            500,
+            500,
+            500
+          ],
+          "body": {
+            "error": "Payment failed: ECONNREFUSED",
+            "paymentId": "P1",
+            "status": "FAILED",
+            "attempts": 1
+          },
+          "msRuns": [
+            123,
+            20,
+            11
+          ],
+          "msMedian": 20
+        },
+        "feesWhileDown": {
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "msMedian": 4
+        },
+        "feeServiceAlive": true
+      },
+      "blackhole": {
+        "status": 500,
+        "body": {
+          "error": "Payment failed: ETIMEDOUT",
+          "paymentId": "P1",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        "ms": 21111,
+        "feesStatus": 200,
+        "feesMs": 4
+      },
+      "criteria": {
+        "Ngân hàng tắt → 503 + JSON error": "KHÔNG ĐẠT",
+        "Thời gian < 1,5 s": "ĐẠT",
+        "Fee Service không sập, GET fees 200": "ĐẠT",
+        "Bank chạy lại → 201 không restart Fee": "ĐẠT",
+        "Blackhole IP → 503 < 1,5 s (thêm)": "KHÔNG ĐẠT",
+        "BANK_URL :4999 hành vi giống": "KHÔNG ĐẠT"
+      }
+    },
+    {
+      "mode": "fixed",
+      "bankDefault": {
+        "paymentWhileDown": {
+          "statuses": [
+            503,
+            503,
+            503
+          ],
+          "body": {
+            "error": "cannot connect to bank (ECONNREFUSED), not charged",
+            "paymentId": "P1",
+            "status": "FAILED",
+            "attempts": 1
+          },
+          "msRuns": [
+            37,
+            5,
+            3
+          ],
+          "msMedian": 5
+        },
+        "feesWhileDown": {
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "msMedian": 1
+        },
+        "feeServiceAlive": true,
+        "paymentAfterBankUp": {
+          "status": 201,
+          "body": {
+            "paymentId": "P4",
+            "reference": "104e5f28-P4",
+            "studentId": "1",
+            "amount": 100000,
+            "status": "PAID",
+            "chargeId": "CH1",
+            "attempts": 1,
+            "createdAt": "2026-10-20T03:37:50.720Z",
+            "updatedAt": "2026-10-20T03:37:50.737Z",
+            "remainingDebt": 49900000
+          },
+          "ms": 20
+        },
+        "sameFeeProcess": true
+      },
+      "bank4999": {
+        "paymentWhileDown": {
+          "statuses": [
+            503,
+            503,
+            503
+          ],
+          "body": {
+            "error": "cannot connect to bank (ECONNREFUSED), not charged",
+            "paymentId": "P1",
+            "status": "FAILED",
+            "attempts": 1
+          },
+          "msRuns": [
+            33,
+            4,
+            3
+          ],
+          "msMedian": 4
+        },
+        "feesWhileDown": {
+          "statuses": [
+            200,
+            200,
+            200
+          ],
+          "msMedian": 1
+        },
+        "feeServiceAlive": true
+      },
+      "blackhole": {
+        "status": 503,
+        "body": {
+          "error": "cannot connect to bank (ECONNECT_TIMEOUT), not charged",
+          "paymentId": "P1",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        "ms": 1029,
+        "feesStatus": 200,
+        "feesMs": 3
+      },
+      "criteria": {
+        "Ngân hàng tắt → 503 + JSON error": "ĐẠT",
+        "Thời gian < 1,5 s": "ĐẠT",
+        "Fee Service không sập, GET fees 200": "ĐẠT",
+        "Bank chạy lại → 201 không restart Fee": "ĐẠT",
+        "Blackhole IP → 503 < 1,5 s (thêm)": "ĐẠT",
+        "BANK_URL :4999 hành vi giống": "ĐẠT"
+      }
+    }
+  ]
+}

@@ -1,0 +1,269 @@
+{
+  "generatedAt": "2026-10-20T03:39:01.383Z",
+  "node": "v22.21.1",
+  "scenario": "TH4 - đứt giữa chừng / lỗi tạm thời / bị từ chối",
+  "a": [
+    {
+      "mode": "naive",
+      "paid": 39,
+      "httpCounts": {
+        "201": 39,
+        "500": 21
+      },
+      "statusCounts": {
+        "PAID": 39,
+        "FAILED": 21
+      },
+      "msMax": 41,
+      "bank": {
+        "connections": 61,
+        "requests": 60,
+        "charges": 60,
+        "duplicates": 0
+      },
+      "debtDrop": 3900000,
+      "expectedDebtDrop": 3900000,
+      "chargedButNotPaid": 21,
+      "failedExamples": [
+        {
+          "http": 500,
+          "error": "Payment failed: ECONNRESET",
+          "paymentId": "P2",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        {
+          "http": 500,
+          "error": "Payment failed: ECONNRESET",
+          "paymentId": "P8",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        {
+          "http": 500,
+          "error": "Payment failed: ECONNRESET",
+          "paymentId": "P9",
+          "status": "FAILED",
+          "attempts": 1
+        }
+      ],
+      "criteria": {
+        "duplicates = 0": "ĐẠT",
+        "≥ 54/60 thành công": "KHÔNG ĐẠT",
+        "Lệnh hỏng trả 504 + PENDING": "KHÔNG ĐẠT",
+        "Công nợ chỉ giảm đúng tiền lệnh PAID": "ĐẠT",
+        "≤ 4,5 s mỗi lệnh": "ĐẠT"
+      },
+      "dropAlways": {
+        "http": 500,
+        "body": {
+          "error": "Payment failed: ECONNRESET",
+          "paymentId": "P1",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        "ms": 40,
+        "debtDrop": 0,
+        "pendingAmount": 0,
+        "bank": {
+          "connections": 2,
+          "requests": 1,
+          "charges": 1,
+          "duplicates": 0
+        }
+      }
+    },
+    {
+      "mode": "fixed",
+      "paid": 60,
+      "httpCounts": {
+        "201": 60
+      },
+      "statusCounts": {
+        "PAID": 60
+      },
+      "msMax": 269,
+      "bank": {
+        "connections": 20,
+        "requests": 78,
+        "charges": 60,
+        "duplicates": 0
+      },
+      "debtDrop": 6000000,
+      "expectedDebtDrop": 6000000,
+      "chargedButNotPaid": 0,
+      "failedExamples": [],
+      "afterReconcile": {
+        "pending": [],
+        "results": [],
+        "paidTotal": 60,
+        "bank": {
+          "connections": 21,
+          "requests": 78,
+          "charges": 60,
+          "duplicates": 0
+        }
+      },
+      "criteria": {
+        "duplicates = 0": "ĐẠT",
+        "≥ 54/60 thành công": "ĐẠT",
+        "Lệnh hỏng trả 504 + PENDING": "ĐẠT",
+        "Công nợ chỉ giảm đúng tiền lệnh PAID": "ĐẠT",
+        "≤ 4,5 s mỗi lệnh": "ĐẠT"
+      },
+      "dropAlways": {
+        "http": 504,
+        "body": {
+          "error": "bank did not confirm the charge (ECONNRESET)",
+          "paymentId": "P1",
+          "status": "PENDING",
+          "attempts": 4
+        },
+        "ms": 1769,
+        "debtDrop": 0,
+        "pendingAmount": 100000,
+        "bank": {
+          "connections": 5,
+          "requests": 4,
+          "charges": 1,
+          "duplicates": 0
+        }
+      }
+    }
+  ],
+  "b": [
+    {
+      "mode": "naive",
+      "paid": 41,
+      "httpCounts": {
+        "201": 41,
+        "500": 19
+      },
+      "statusCounts": {
+        "PAID": 41,
+        "FAILED": 19
+      },
+      "msMax": 43,
+      "bank": {
+        "connections": 61,
+        "requests": 60,
+        "charges": 41,
+        "duplicates": 0
+      },
+      "debtDrop": 4100000,
+      "expectedDebtDrop": 4100000,
+      "chargedButNotPaid": 0,
+      "failedExamples": [
+        {
+          "http": 500,
+          "error": "temporary bank error",
+          "paymentId": "P6",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        {
+          "http": 500,
+          "error": "temporary bank error",
+          "paymentId": "P7",
+          "status": "FAILED",
+          "attempts": 1
+        },
+        {
+          "http": 500,
+          "error": "temporary bank error",
+          "paymentId": "P11",
+          "status": "FAILED",
+          "attempts": 1
+        }
+      ],
+      "criteria": {
+        "≥ 54/60 thành công": "KHÔNG ĐẠT",
+        "Không trừ tiền hai lần": "ĐẠT",
+        "≤ 4,5 s mỗi lệnh": "ĐẠT"
+      }
+    },
+    {
+      "mode": "fixed",
+      "paid": 60,
+      "httpCounts": {
+        "201": 60
+      },
+      "statusCounts": {
+        "PAID": 60
+      },
+      "msMax": 326,
+      "bank": {
+        "connections": 2,
+        "requests": 78,
+        "charges": 60,
+        "duplicates": 0
+      },
+      "debtDrop": 6000000,
+      "expectedDebtDrop": 6000000,
+      "chargedButNotPaid": 0,
+      "failedExamples": [],
+      "afterReconcile": {
+        "pending": [],
+        "results": [],
+        "paidTotal": 60,
+        "bank": {
+          "connections": 3,
+          "requests": 78,
+          "charges": 60,
+          "duplicates": 0
+        }
+      },
+      "criteria": {
+        "≥ 54/60 thành công": "ĐẠT",
+        "Không trừ tiền hai lần": "ĐẠT",
+        "≤ 4,5 s mỗi lệnh": "ĐẠT"
+      }
+    }
+  ],
+  "c": [
+    {
+      "mode": "naive",
+      "status": 402,
+      "body": {
+        "error": "amount exceeds limit 20000000",
+        "paymentId": "P1",
+        "status": "FAILED",
+        "attempts": 1
+      },
+      "ms": 44,
+      "bankRequests": 1,
+      "bank": {
+        "connections": 2,
+        "requests": 1,
+        "charges": 0,
+        "duplicates": 0
+      },
+      "criteria": {
+        "Trả 402": "ĐẠT",
+        "Ngân hàng nhận đúng 1 yêu cầu": "ĐẠT"
+      }
+    },
+    {
+      "mode": "fixed",
+      "status": 402,
+      "body": {
+        "error": "amount exceeds limit 20000000",
+        "paymentId": "P1",
+        "status": "FAILED",
+        "attempts": 1
+      },
+      "ms": 50,
+      "bankRequests": 1,
+      "bank": {
+        "connections": 2,
+        "requests": 1,
+        "charges": 0,
+        "duplicates": 0
+      },
+      "criteria": {
+        "Trả 402": "ĐẠT",
+        "Ngân hàng nhận đúng 1 yêu cầu": "ĐẠT"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1 @@
+[fee] listening on :4001 mode=fixed BANK_URL=http://localhost:4999 connectTimeout=1000ms deadline=4000ms maxAttempts=4

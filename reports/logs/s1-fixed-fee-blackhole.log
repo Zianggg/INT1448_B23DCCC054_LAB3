@@ -1,0 +1,1 @@
+[fee] listening on :4001 mode=fixed BANK_URL=http://10.255.255.1:4002 connectTimeout=1000ms deadline=4000ms maxAttempts=4

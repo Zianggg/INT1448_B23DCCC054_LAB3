@@ -1,0 +1,3 @@
+[bank] listening on :4002 DELAY_MS=0 FAIL_RATE=0 DROP_RATE=1
+[bank] new TCP connection #1 from ::1:60200
+[bank] new TCP connection #2 from ::1:60201

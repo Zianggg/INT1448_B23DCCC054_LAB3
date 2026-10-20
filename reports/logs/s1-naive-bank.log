@@ -1,0 +1,2 @@
+[bank] listening on :4002 DELAY_MS=0 FAIL_RATE=0 DROP_RATE=0
+[bank] new TCP connection #1 from ::1:55944

@@ -1,0 +1,163 @@
+{
+  "generatedAt": "2026-10-20T03:38:52.146Z",
+  "node": "v22.21.1",
+  "scenario": "TH3 - duy trì kết nối, 200 lệnh / 10 đồng thời",
+  "results": [
+    {
+      "mode": "naive",
+      "runs": [
+        {
+          "run": 1,
+          "ok": 200,
+          "totalMs": 386,
+          "connectionsBurst": 201,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 207,
+          "bankStats": {
+            "connections": 207,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        },
+        {
+          "run": 2,
+          "ok": 200,
+          "totalMs": 301,
+          "connectionsBurst": 201,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 207,
+          "bankStats": {
+            "connections": 207,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        },
+        {
+          "run": 3,
+          "ok": 200,
+          "totalMs": 298,
+          "connectionsBurst": 201,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 207,
+          "bankStats": {
+            "connections": 207,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        }
+      ],
+      "median": {
+        "totalMs": 301,
+        "connectionsBurst": 201,
+        "okBurst": 200
+      },
+      "criteria": {
+        "200/200 thành công": "ĐẠT",
+        "Số kết nối TCP ≤ 20": "KHÔNG ĐẠT",
+        "Sau 6 s nhàn rỗi vẫn thành công": "ĐẠT"
+      }
+    },
+    {
+      "mode": "fixed",
+      "runs": [
+        {
+          "run": 1,
+          "ok": 200,
+          "totalMs": 196,
+          "connectionsBurst": 11,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 13,
+          "bankStats": {
+            "connections": 13,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        },
+        {
+          "run": 2,
+          "ok": 200,
+          "totalMs": 217,
+          "connectionsBurst": 11,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 13,
+          "bankStats": {
+            "connections": 13,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        },
+        {
+          "run": 3,
+          "ok": 200,
+          "totalMs": 200,
+          "connectionsBurst": 11,
+          "afterIdleOk": 5,
+          "afterIdleStatuses": [
+            201,
+            201,
+            201,
+            201,
+            201
+          ],
+          "connectionsTotal": 13,
+          "bankStats": {
+            "connections": 13,
+            "requests": 205,
+            "charges": 205,
+            "duplicates": 0
+          }
+        }
+      ],
+      "median": {
+        "totalMs": 200,
+        "connectionsBurst": 11,
+        "okBurst": 200
+      },
+      "criteria": {
+        "200/200 thành công": "ĐẠT",
+        "Số kết nối TCP ≤ 20": "ĐẠT",
+        "Sau 6 s nhàn rỗi vẫn thành công": "ĐẠT"
+      }
+    }
+  ]
+}

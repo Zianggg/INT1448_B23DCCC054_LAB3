@@ -1,0 +1,69 @@
+{
+  "info": {
+    "name": "LAB3 - Fee Service & Bank (B23DCCC054)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "fee", "value": "http://localhost:4001" },
+    { "key": "bank", "value": "http://localhost:4002" },
+    { "key": "pid", "value": "P1" }
+  ],
+  "item": [
+    {
+      "name": "Fee Service",
+      "item": [
+        { "name": "GET fees SV1", "request": { "method": "GET", "url": "{{fee}}/students/1/fees" } },
+        { "name": "GET fees SV2", "request": { "method": "GET", "url": "{{fee}}/students/2/fees" } },
+        { "name": "GET fees SV3", "request": { "method": "GET", "url": "{{fee}}/students/3/fees" } },
+        {
+          "name": "POST payment SV1 100.000",
+          "request": {
+            "method": "POST",
+            "url": "{{fee}}/students/1/payments",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"amount\": 100000 }" }
+          }
+        },
+        {
+          "name": "POST payment SV1 25.000.000 (402)",
+          "request": {
+            "method": "POST",
+            "url": "{{fee}}/students/1/payments",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"amount\": 25000000 }" }
+          }
+        },
+        {
+          "name": "POST payment SV2 (vượt công nợ 400)",
+          "request": {
+            "method": "POST",
+            "url": "{{fee}}/students/2/payments",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{ \"amount\": 100000 }" }
+          }
+        },
+        { "name": "GET payments", "request": { "method": "GET", "url": "{{fee}}/payments" } },
+        { "name": "POST reconcile", "request": { "method": "POST", "url": "{{fee}}/payments/{{pid}}/reconcile" } },
+        { "name": "GET health", "request": { "method": "GET", "url": "{{fee}}/health" } }
+      ]
+    },
+    {
+      "name": "Bank",
+      "item": [
+        {
+          "name": "POST charge (Idempotency-Key)",
+          "request": {
+            "method": "POST",
+            "url": "{{bank}}/charges",
+            "header": [
+              { "key": "Content-Type", "value": "application/json" },
+              { "key": "Idempotency-Key", "value": "TEST-1" }
+            ],
+            "body": { "mode": "raw", "raw": "{ \"reference\": \"TEST-1\", \"amount\": 1000 }" }
+          }
+        },
+        { "name": "GET stats", "request": { "method": "GET", "url": "{{bank}}/stats" } }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[bank] listening on :4002 DELAY_MS=0 FAIL_RATE=0 DROP_RATE=0
+[bank] new TCP connection #1 from ::1:60053
+[bank] new TCP connection #2 from ::1:60054
+[bank] new TCP connection #3 from ::1:60055
+[bank] new TCP connection #4 from ::1:60056
+[bank] new TCP connection #5 from ::1:60057
+[bank] new TCP connection #6 from ::1:60058
+[bank] new TCP connection #7 from ::1:60059
+[bank] new TCP connection #8 from ::1:60060
+[bank] new TCP connection #9 from ::1:60061
+[bank] new TCP connection #10 from ::1:60062
+[bank] new TCP connection #11 from ::1:60066
+[bank] new TCP connection #12 from ::1:60068
+[bank] new TCP connection #13 from ::1:60070

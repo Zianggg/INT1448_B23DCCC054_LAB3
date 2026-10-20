@@ -1,0 +1,21 @@
+{
+  "name": "int1448-b23dccc054-lab3",
+  "version": "1.0.0",
+  "private": true,
+  "description": "LAB 3 - Fee Service goi cong ngan hang: timeout, keep-alive, retry + idempotency",
+  "type": "module",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "bank": "node src/bank.js",
+    "fee": "node src/fee-service.js",
+    "fee:naive": "node src/fee-service.js --naive",
+    "s1": "node scripts/s1-bank-down.js",
+    "s2": "node scripts/s2-slow-bank.js",
+    "s3": "node scripts/s3-keep-alive.js",
+    "s4": "node scripts/s4-drop-fail-reject.js",
+    "all": "node scripts/run-all.js"
+  },
+  "dependencies": {
+    "express": "^5.1.0"
+  }
+}

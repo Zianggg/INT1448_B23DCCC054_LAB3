@@ -1,0 +1,115 @@
+{
+  "generatedAt": "2026-10-20T03:38:12.606Z",
+  "node": "v22.21.1",
+  "scenario": "TH2 - ngân hàng chậm DELAY_MS=5000",
+  "results": [
+    {
+      "mode": "naive",
+      "single": {
+        "status": 201,
+        "body": {
+          "paymentId": "P1",
+          "reference": "d21a6e4d-P1",
+          "studentId": "1",
+          "amount": 100000,
+          "status": "PAID",
+          "chargeId": "CH1",
+          "attempts": 1,
+          "createdAt": "2026-10-20T03:37:52.541Z",
+          "updatedAt": "2026-10-20T03:37:57.583Z",
+          "remainingDebt": 49900000
+        },
+        "ms": 5098
+      },
+      "burst20": {
+        "httpCounts": {
+          "201": 20
+        },
+        "statusCounts": {
+          "PAID": 20
+        },
+        "msMedian": 5044,
+        "msMax": 5047
+      },
+      "feesDuringBurst": {
+        "statuses": [
+          200,
+          200,
+          200,
+          200
+        ],
+        "ms": [
+          3,
+          2,
+          2,
+          3
+        ],
+        "msMax": 3
+      },
+      "criteria": {
+        "504 + status PENDING": "KHÔNG ĐẠT",
+        "Tổng thời gian ≤ 4,5 s (1 lệnh)": "KHÔNG ĐẠT",
+        "Tổng thời gian ≤ 4,5 s (20 lệnh)": "KHÔNG ĐẠT",
+        "GET fees < 300 ms khi 20 lệnh đang chờ": "ĐẠT"
+      }
+    },
+    {
+      "mode": "fixed",
+      "single": {
+        "status": 504,
+        "body": {
+          "error": "bank did not confirm the charge (EDEADLINE)",
+          "paymentId": "P1",
+          "status": "PENDING",
+          "attempts": 1
+        },
+        "ms": 4043
+      },
+      "burst20": {
+        "httpCounts": {
+          "504": 20
+        },
+        "statusCounts": {
+          "PENDING": 20
+        },
+        "msMedian": 4030,
+        "msMax": 4032
+      },
+      "reconcile": {
+        "pending": 21,
+        "statusCounts": {
+          "PAID": 21
+        },
+        "msMax": 31,
+        "bank": {
+          "connections": 42,
+          "requests": 42,
+          "charges": 21,
+          "duplicates": 0
+        },
+        "debt": 47900000
+      },
+      "feesDuringBurst": {
+        "statuses": [
+          200,
+          200,
+          200,
+          200
+        ],
+        "ms": [
+          2,
+          2,
+          2,
+          2
+        ],
+        "msMax": 2
+      },
+      "criteria": {
+        "504 + status PENDING": "ĐẠT",
+        "Tổng thời gian ≤ 4,5 s (1 lệnh)": "ĐẠT",
+        "Tổng thời gian ≤ 4,5 s (20 lệnh)": "ĐẠT",
+        "GET fees < 300 ms khi 20 lệnh đang chờ": "ĐẠT"
+      }
+    }
+  ]
+}
